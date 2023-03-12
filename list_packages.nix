@@ -1,3 +1,5 @@
+#Creates a list of installed packages at /etc/current-system-packages
+
 {config, pkgs, lib,  ...} :
 {
   environment.etc."current-system-packages".text = 
