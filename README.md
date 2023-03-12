@@ -1,6 +1,6 @@
 # nixconfig
 Nix configuration using Home Manager
 
-Configurations:
--default:
+## Configurations
+  - default:
   Default configuration based on i3 and Dracula theme
