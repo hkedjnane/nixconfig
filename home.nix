@@ -19,8 +19,12 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  # ALlow unfree packages in home
   nixpkgs.config.allowUnfree = true;
 
-  imports = [ ./default/home_default.nix ];
+  # Font configuration
+  fonts.fontconfig.enable = true;
+
+  imports = [ ./default/user.nix ];
 
 }

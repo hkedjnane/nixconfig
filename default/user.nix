@@ -11,4 +11,8 @@
     media/media.nix
   ];
 
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
+
 }

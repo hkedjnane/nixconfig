@@ -12,12 +12,14 @@
   imports =
     [ # Include the results of the hardware scan.
      ./hardware-configuration.nix
-     ./default/system_default.nix
+     ./default/system.nix
      ./list_packages.nix
+     # Surface hardware optimization, change path/remove on different system
+     "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/microsoft/surface/surface-pro-intel"
     ];
 
   # Bootloader.
-  #boot.loader.systemd-boot.enable = true;
+  boot.supportedFilesystems = [ "ntfs" ];
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.loader.grub = {
@@ -27,13 +29,9 @@
     useOSProber = true;  
   };
 
+
   networking.hostName = "nixsurface"; # Define your hostname.
 
-  #HiDPI support
-  hardware.video.hidpi.enable = true;
-
-  #NTFS support
-  boot.supportedFilesystems = [ "ntfs" ];
 
 
   # Enable networking
@@ -73,8 +71,6 @@
   };
 
 
-  #Configure audio
-  hardware.pulseaudio.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -86,15 +82,25 @@
 
   # System services
   services = {
-    #OpenSSH daemon
+    # OpenSSH daemon
     openssh.enable = true;
-    #Gnome keyring
+    # Gnome keyring
     gnome.gnome-keyring.enable = true;
   };
   
   # Add and enable gnome-keyring
   security.pam.services.lightdm.enableGnomeKeyring = true;
 
+  hardware = {
+    # Enable audio
+    pulseaudio.enable = true;
+    
+    # Enable bluetooth
+    bluetooth.enable = true;
+    
+    # Enable HiDPI support
+    video.hidpi.enable = true;
+  };
 
   # Enabling experimental features by default
   nix = {
@@ -103,6 +109,8 @@
       experimental-features = nix-command flakes
     '';
   };
+
+
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

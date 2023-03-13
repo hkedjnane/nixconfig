@@ -13,9 +13,11 @@
         set cc=80
         set ts=4 sw=4 et softtabstop=4
     '';
-    coc.enable = true;
     plugins = with pkgs.vimPlugins; [
+
+      # Enable NIX file support
       vim-nix
+      # Enable Dracula theme
       {
         plugin = dracula-vim;
         config = ''

@@ -9,9 +9,8 @@
   programs.kitty = {
     enable = true;
     font = {
-      package = pkgs.iosevka;
-      name = "Ioseva Term";
-      size = 15;
+      package = pkgs.jetbrains-mono;
+      name = "JetBrains Mono";
     };
     theme = "Dracula";
 
