@@ -66,7 +66,7 @@
   users.users.harsane = {
     isNormalUser = true;
     description = "Harrys Kedjnane";
-    extraGroups = [ "networkmanager" "wheel" "audio" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "video" ];
     packages = with pkgs; [];
   };
 
@@ -86,6 +86,9 @@
     openssh.enable = true;
     # Gnome keyring
     gnome.gnome-keyring.enable = true;
+
+    # Enable ACPID
+    acpid.enable = true;
   };
   
   # Add and enable gnome-keyring
@@ -109,6 +112,9 @@
       experimental-features = nix-command flakes
     '';
   };
+
+  # Enable light, a backlight manager
+  programs.light.enable = true;
 
 
 
