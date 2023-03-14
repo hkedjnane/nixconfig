@@ -7,6 +7,7 @@
     tree
     neofetch
     htop
+    unzip
   ];
 
 }

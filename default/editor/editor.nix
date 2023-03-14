@@ -38,6 +38,12 @@ in
         '';
       }
       (fromGitHub "HEAD" "justinmk/vim-syntax-extra")
+      (fromGitHub "HEAD" "xiyaowong/virtcolumn.nvim")
+      copilot-vim
+    ];
+
+    extraPackages = with pkgs; [
+      nodejs-16_x
     ];
   };
 }
