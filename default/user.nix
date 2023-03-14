@@ -6,6 +6,7 @@
     communication/communication.nix
     dev/dev.nix
     editor/editor.nix
+    window/window.nix
     misc/misc.nix
     terminal/terminal.nix
     media/media.nix

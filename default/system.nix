@@ -3,9 +3,9 @@
 {
 
   imports = [
-    display/display.nix
-    window/window.nix
     vpn/vpn.nix
+    desktop/desktop.nix
+    display/display.nix
   ];
 
 }

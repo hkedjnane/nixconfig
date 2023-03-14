@@ -3,7 +3,14 @@
 
   #No desktop used
   services.xserver.desktopManager = {
-    default = "none";
-    xterm.enable = false;
+    session = [
+      {
+        name = "home-manager";
+        start = ''
+          ${pkgs.runtimeShell} $HOME/.hm-xsession &
+          waitPID=$!
+        '';
+      }
+    ];
   };
 }
