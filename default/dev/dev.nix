@@ -3,9 +3,6 @@
 {
   home.packages = with pkgs; [ 
     vscode-fhs
-    jetbrains.clion
-    gnumake
-    gh
 ];
 
   programs.git = {
