@@ -70,6 +70,9 @@
     packages = with pkgs; [];
   };
 
+  # Add trusted users
+  nix.settings.trusted-users = [ "root" "harsane" ];
+
 
 
   # Allow unfree packages
