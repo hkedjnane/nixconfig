@@ -15,8 +15,11 @@
      ./default/system.nix
      ./list_packages.nix
      # Surface hardware optimization, change path/remove on different system
-     "${builtins.fetchGit { url = "https://github.com/NixOS/nixos-hardware.git"; }}/microsoft/surface/surface-pro-intel"
-    ];
+     <nixos-hardware/microsoft/surface/surface-pro-intel>
+   ];
+
+  # Set kernel for Surface
+  microsoft-surface.kernelVersion = "6.1.18";
 
   # Bootloader.
   boot.supportedFilesystems = [ "ntfs" ];
@@ -66,14 +69,12 @@
   users.users.harsane = {
     isNormalUser = true;
     description = "Harrys Kedjnane";
-    extraGroups = [ "networkmanager" "wheel" "audio" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "audio" "video" "docker"];
     packages = with pkgs; [];
   };
 
   # Add trusted users
   nix.settings.trusted-users = [ "root" "harsane" ];
-
-
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -100,6 +101,9 @@
   hardware = {
     # Enable audio
     pulseaudio.enable = true;
+    pulseaudio.extraConfig = ''
+      load-module module-switch-on-connect
+      '';
     
     # Enable bluetooth
     bluetooth.enable = true;
@@ -107,6 +111,9 @@
     # Enable HiDPI support
     video.hidpi.enable = true;
   };
+
+  # Enable docker
+  virtualisation.docker.enable = true;
 
   # Enabling experimental features by default
   nix = {
@@ -118,6 +125,9 @@
 
   # Enable light, a backlight manager
   programs.light.enable = true;
+
+  # Enable SSH agent
+  programs.ssh.startAgent = true;
 
 
 
