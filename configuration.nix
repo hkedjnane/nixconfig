@@ -15,11 +15,11 @@
      ./default/system.nix
      ./list_packages.nix
      # Surface hardware optimization, change path/remove on different system
-     <nixos-hardware/microsoft/surface/surface-pro-intel>
+     #<nixos-hardware/microsoft/surface/surface-pro-intel>
    ];
 
   # Set kernel for Surface
-  microsoft-surface.kernelVersion = "6.1.18";
+  #microsoft-surface.kernelVersion = "6.1.18";
 
   # Bootloader.
   boot.supportedFilesystems = [ "ntfs" ];
@@ -32,6 +32,10 @@
     useOSProber = true;  
   };
 
+  # Clean up after yourself..
+  nix.gc.automatic = true;
+  nix.gc.dates = "03:14";
+  nix.gc.options = "--delete-older-than 30d";
 
   networking.hostName = "nixsurface"; # Define your hostname.
 
@@ -120,6 +124,11 @@
     package = pkgs.nixFlakes;
     extraOptions = ''
       experimental-features = nix-command flakes
+      keep-outputs = true
+      keep-derivations = true
+      auto-optimise-store = true
+      binary-caches = https://cache.nixos.org https://hydra.nixos.org http://hydra.cryp.to
+      trusted-binary-caches = https://cache.nixos.org https://hydra.nixos.org http://hydra.cryp.to
     '';
   };
 

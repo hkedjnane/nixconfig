@@ -2,6 +2,7 @@
 
 {
   home.packages = with pkgs; [ 
+    wget
     ncdu
     ranger
     tree
