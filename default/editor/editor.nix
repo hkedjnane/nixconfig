@@ -1,52 +1,23 @@
 { config, pkgs, lib, ... }:
 
-let
-  fromGitHub = ref: repo: pkgs.vimUtils.buildVimPluginFrom2Nix {
-    pname = "${lib.strings.sanitizeDerivationName repo}";
-    version = ref;
-    src = builtins.fetchGit {
-      url = "https://github.com/${repo}.git";
-      ref = ref;
-    };
-  };
-in
-
 {
-
+  #Make Neovim the default editor
   home.sessionVariables = {
     EDITOR = "nvim";
   };
 
-  programs.neovim = {
-    enable = true;
-    viAlias = true;
-    vimAlias = true;
-    extraConfig = ''
-        set signcolumn=number
-        set nu rnu
-        set expandtab
-        set cc=80
-        set ts=4 sw=4 et softtabstop=4
-    '';
-    plugins = with pkgs.vimPlugins; [
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
+    }))
+  ];
 
-      # Enable NIX file support
-      vim-nix
-      # Enable Dracula theme
-      {
-        plugin = dracula-vim;
-        config = ''
-          colorscheme dracula
-          set termguicolors
-        '';
-      }
-      (fromGitHub "HEAD" "justinmk/vim-syntax-extra")
-      (fromGitHub "HEAD" "xiyaowong/virtcolumn.nvim")
-      copilot-vim
-    ];
+  #Symlinking Neovim configuration to config directory
+  home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink ./nvim;
 
-    extraPackages = with pkgs; [
-      nodejs-16_x
-    ];
-  };
+  home.packages = with pkgs; [
+    neovim-nightly	#The center piece
+    nodejs		#Some plugins depend on this
+  ];
+
 }
