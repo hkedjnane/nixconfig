@@ -1,4 +1,4 @@
- -- lazy.nvim init
+-- lazy.nvim init
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -11,5 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
+
+vim.keymap.set({'n', 'v',}, "<Space>", "<Nop>", { silent = true })
+vim.g.mapleader = " "
 
 require("lazy").setup("plugins")
