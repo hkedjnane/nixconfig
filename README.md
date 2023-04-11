@@ -7,7 +7,7 @@ Nix configuration using Home Manager
     Window Manager: i3
     Shell: bash
     Terminal: kitty
-    Editor: neovim(home-manager) + vscode
+    Editor: neovim(lazy.nvim config) + vscode
     Browser: firefox
 
 ## Note
