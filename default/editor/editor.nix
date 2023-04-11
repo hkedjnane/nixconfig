@@ -17,7 +17,8 @@
 
   home.packages = with pkgs; [
     neovim-nightly	#The center piece
-    nodejs		#Some plugins depend on this
+    nodejs			#Some plugins depend on this
+	gcc				#Some plugins depend on this
   ];
 
 }
