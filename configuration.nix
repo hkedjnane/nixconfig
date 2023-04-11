@@ -14,12 +14,12 @@
      ./hardware-configuration.nix
      ./default/system.nix
      ./list_packages.nix
-     # Surface hardware optimization, change path/remove on different system
-     #<nixos-hardware/microsoft/surface/surface-pro-intel>
+     #Surface hardware optimization, change path/remove on different system
+     <nixos-hardware/microsoft/surface/surface-pro-intel>
    ];
 
   # Set kernel for Surface
-  #microsoft-surface.kernelVersion = "6.1.18";
+  microsoft-surface.kernelVersion = "6.1.18";
 
   # Bootloader.
   boot.supportedFilesystems = [ "ntfs" ];

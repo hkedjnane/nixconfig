@@ -13,6 +13,11 @@
     enable = true;
     userEmail = "harrys.kedjnane@epita.fr";
     userName = "Harrys Kedjnane";
+    extraConfig = {
+      push = {
+        autoSetupRemote = true;
+      };
+    };
   };
 
   services.gnome-keyring = {
