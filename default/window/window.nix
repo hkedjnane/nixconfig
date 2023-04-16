@@ -12,9 +12,6 @@
     windowManager.i3 = {
       enable = true;
       package = pkgs.i3-gaps;
-      config = {
-       bars = [];
-      };
       extraConfig = builtins.readFile ./i3_config;
     };
   };

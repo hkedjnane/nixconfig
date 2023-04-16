@@ -12,7 +12,7 @@
       package = pkgs.jetbrains-mono;
       name = "JetBrains Mono";
     };
-    theme = "Dracula";
+    theme = "Catppuccin-Frappe";
 
     settings = {
       confirm_os_window_close = 0;

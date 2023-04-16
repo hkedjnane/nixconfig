@@ -32,11 +32,11 @@ in
 
       # Enable NIX file support
       vim-nix
-      # Enable Dracula theme
+      # Enable Catppuccin theme
       {
-        plugin = dracula-vim;
+        plugin = catppuccin-nvim;
         config = ''
-          colorscheme dracula
+          colorscheme catppuccin-frappe
           set termguicolors
         '';
       }
