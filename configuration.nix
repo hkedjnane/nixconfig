@@ -9,8 +9,7 @@
  # Changing the nix configuration path to local one for easier perms management
  
 
-  imports =
-    [ # Include the results of the hardware scan.
+  imports = [ # Include the results of the hardware scan.
      ./hardware-configuration.nix
      ./default/system.nix
      ./list_packages.nix
@@ -81,7 +80,15 @@
   nix.settings.trusted-users = [ "root" "harsane" ];
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: {
+      # Add NUR to the list of package sources.
+      nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+        inherit pkgs;
+      };
+    };
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
