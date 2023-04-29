@@ -7,6 +7,13 @@
     feh
     pavucontrol
     qbittorrent
+    playerctl
   ];
+  
+  # Media controls daemon
+  services.playerctld = {
+    enable = true;
+    package = pkgs.playerctl;
+  };
 
 }
