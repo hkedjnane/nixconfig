@@ -9,6 +9,7 @@
     neofetch
     htop
     unzip
+    bitwarden
   ];
 
 }
