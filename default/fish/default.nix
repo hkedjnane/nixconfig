@@ -8,6 +8,7 @@
       lv = "ls -v";
       rebuild = "sudo nixos-rebuild switch -I nixos-config=/home/harsane/.config/home-manager/configuration.nix";
       hms = "home-manager switch";
+      vim = "nvim";
     };
 
     functions = {
