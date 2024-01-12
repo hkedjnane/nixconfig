@@ -38,6 +38,8 @@
     # Fonts
     victor-mono
     hack-font
+    nerdfonts
+    jetbrains-mono
 
     # Desktop utilities
     pavucontrol # Sound control
