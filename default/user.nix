@@ -45,6 +45,7 @@
     pavucontrol # Sound control
 
     # Entertainment
+    prismlauncher
 
     # Humorous
     gti
