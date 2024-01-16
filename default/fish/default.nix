@@ -9,6 +9,7 @@
       rebuild = "sudo nixos-rebuild switch -I nixos-config=/home/harsane/.config/home-manager/configuration.nix";
       hms = "home-manager switch";
       vim = "nvim";
+      temp = "cd $(mktemp -d)";
     };
 
     functions = {
