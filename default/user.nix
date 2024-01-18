@@ -34,6 +34,7 @@
     comma     # Run program from nixpkgs without installing
     neofetch  # El famoso
     onefetch  # neofetch for git repos
+    ncdu      # Disk usage explorer
 
     # Fonts
     victor-mono
