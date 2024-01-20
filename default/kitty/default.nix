@@ -12,7 +12,7 @@
       package = pkgs.hack-font;
       name = "Hack";
     };
-    theme = "Dracula";
+    theme = "Catppuccin-Frappe";
 
     settings = {
       confirm_os_window_close = 0;

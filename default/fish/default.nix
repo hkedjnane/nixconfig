@@ -1,6 +1,15 @@
 {config, pkgs, ...}:
+let
+catppuccin-fish = pkgs.fetchFromGitHub { 
+  owner = "catppuccin"; 
+  repo = "fish"; 
+  rev = "HEAD"; 
+  hash = "sha256-Dc/zdxfzAUM5NX8PxzfljRbYvO9f9syuLO8yBr+R3qg="; 
+}; 
+in 
 {
 
+  xdg.configFile."fish/themes/Catppuccin Frappe.theme".source = "${catppuccin-fish}/themes/Catppuccin Frappe.theme"; 
   programs.fish = {
     enable = true;
     shellAliases = {
@@ -10,6 +19,12 @@
       hms = "home-manager switch";
       vim = "nvim";
       temp = "cd $(mktemp -d)";
+      icat = "kitten icat";
+      gs = "git status";
+      gc = "git commit";
+      gcu = "git commit -u";
+      gp = "git push";
+      gpf = "git push --force-with-lease";
     };
 
     functions = {
@@ -19,16 +34,11 @@
       posix = ''bash -c "$argv"'';
     };
 
+    interactiveShellInit = ''
+      fish_config theme choose Catppuccin\ Frappe
+    '';
+
     plugins = [
-      {
-        name = "dracula";
-        src = pkgs.fetchFromGitHub {
-        owner = "dracula";
-        repo = "fish";
-        rev = "HEAD";
-        sha256 = "Hyq4EfSmWmxwCYhp3O8agr7VWFAflcUe8BUKh50fNfY=";
-        };
-      }
       {
         name = "nix.fish";
         src = pkgs.fetchFromGitHub {
@@ -50,26 +60,26 @@
     ];
   };
 
-  programs.starship = {
-    enable = true;
-    enableFishIntegration = true;
+  programs.starship =
+      let
+        flavour = "frappe"; # One of `latte`, `frappe`, `macchiato`, or `mocha`
+      in
+      {
+        enable = true;
+        enableFishIntegration = true;
+        enableBashIntegration = true;
 
-    # From https://draculatheme.com/starship
-    settings = {
-    aws.style = "bold #ffb86c";
-    cmd_duration.style = "bold #f1fa8c";
-    directory.style = "bold #50fa7b";
-    hostname.style = "bold #ff5555";
-    git_branch.style = "bold #ff79c6";
-    git_status.style = "bold #ff5555";
-    username = {
-      format = "[$user]($style) on ";
-      style_user = "bold #bd93f9";
-    };
-    character = {
-      success_symbol = "[λ](bold #f8f8f2)";
-      error_symbol = "[λ](bold #ff5555)";
-    };
-  };
-  };
+        settings = {
+          # Other config here
+          format = "$all"; # Remove this line to disable the default prompt format
+          palette = "catppuccin_${flavour}";
+        } // builtins.fromTOML (builtins.readFile
+          (pkgs.fetchFromGitHub
+            {
+              owner = "catppuccin";
+              repo = "starship";
+              rev = "5629d23"; # Replace with the latest commit hash
+              sha256 = "sha256-nsRuxQFKbQkyEI4TXgvAjcroVdG+heKX5Pauq/4Ota0=";
+            } + /starship.toml));
+      };
 }
