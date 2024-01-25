@@ -9,6 +9,9 @@
       push = {
         autoSetupRemote = true;
       };
+      init = {
+        defaultBranch = "main";
+      };
     };
     lfs.enable = true;
   };
