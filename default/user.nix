@@ -1,5 +1,4 @@
 {config, pkgs, ... }:
-
 {
   home.packages = with pkgs; [
     # Browser
@@ -8,7 +7,6 @@
     # Communications
     discord
     slack
-    teams-for-linux
 
     # Development
     vscode.fhs
@@ -35,6 +33,7 @@
     neofetch  # El famoso
     onefetch  # neofetch for git repos
     ncdu      # Disk usage explorer
+    cht-sh    # Cheat sheets
 
     # Fonts
     victor-mono
@@ -47,9 +46,11 @@
 
     # Entertainment
     prismlauncher
+    osu-lazer
 
     # Humorous
     gti
+    sl
   ];
 
   # Media controls daemon
